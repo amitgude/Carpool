@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  carpool_id: 1
+  seats: 1
+
+two:
+  carpool_id: 1
+  seats: 1
