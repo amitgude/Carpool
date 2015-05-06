@@ -1,0 +1,25 @@
+@import 'search_ride';
+
+$parallax-window-height: 32em;
+$parallax-background-height: $parallax-window-height * 2;
+
+.parallax-window {
+  height: $parallax-window-height;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+
+.parallax-background {
+  background: url("../Carpool/app/assets/images/parallax.jpg") repeat;
+  background-position: top;
+  background-size: cover;
+  background-color: beige;
+  height: $parallax-background-height;
+  left: 0;
+  position: absolute;
+  top: - $parallax-window-height / 3;
+  width: 100%;
+}

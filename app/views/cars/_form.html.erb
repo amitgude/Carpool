@@ -1,0 +1,23 @@
+
+
+<div id="car-main">
+
+ <%= simple_form_for @car, :html => { :multipart => true } do |f| %>
+ <h2>Car Edits</h2>
+	<span class="car-row">
+     
+	  <span class="add-car"><%= f.input :brand %></span>
+	  <span class="add-car"><%= f.input :color %></span>
+	 </span>
+
+	<span class="car-row">
+	  <span class="add-car"><%= f.input :model %></span>
+	  <span class="add-car"><%= f.input :seats %></span>
+	</span>
+
+	<span class="car-row">
+	  <span class="add-car"><%= f.input :picture, as: :file %></span>
+	  <span class="add-car"><%= f.button :submit ,:class => "btn btn-blue btn-lg"%></span>
+	  <% end %>
+	</span>
+</div>

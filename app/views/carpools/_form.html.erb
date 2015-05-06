@@ -1,0 +1,115 @@
+
+<div class="create-carpool">
+<p id="heading">Register your carpool</p>
+
+ <%= simple_form_for @carpool  do |c| %>
+ 
+<span id="time-date" class="carpool">  
+ <span id="date" class="carpool"> 
+ <%= c.input :journey_date,:label_html => { :class => 'left' }, start_year: Date.today.year,end_year: Date.today.year + 12 %> 
+ </span>
+ <span id="time" class="carpool"> 
+ <%= c.input :depature_time %> 
+ </span>
+ </span>
+
+ <span id="price-laggage" class="carpool">  
+ <span id="price" class="carpool"> 
+ <%= c.input :price %>
+ </span>
+ <span id="luggage" class="carpool"> 
+ <%= c.input :luggage_size, collection: 1..50 %>
+ </span>
+ </span>
+
+ <span id="other" class="carpool"> 
+ <%= c.input :other %>
+</span>
+
+<span id="seats-car" class="carpool"> 
+<span id="car" class="carpool"> 
+<%= c.input :car_id, collection: Car.where(:user_id => current_user.id).map {|p| [p.brand,p.id]}, as: :select %>
+</span>
+
+
+
+<span id="seats" class="carpool"> 
+ <%= c.simple_fields_for :seats do |seat| %>
+       <%= seat.input :seats%>
+<% end %>
+</span>
+
+</span>
+
+
+<span id="source-destination" class="carpool">
+<span id="source-field" class="carpool"> 
+   <%= c.simple_fields_for :source,:html => { :class => 'right' } do |s| %>
+       <%= s.input :source, input_html: {id: "source"} %>
+       <%= s.input :longitude, as: :hidden %>
+       <%= s.input :latitude, as: :hidden %>
+   <% end %>
+</span>
+
+<span id="destination-field" class="carpool"> 
+   <%= c.simple_fields_for :destination do |d| %>
+       <%= d.input :destination, input_html: {id: "destination"} %>
+       <%= d.input :longitude, as: :hidden %>
+       <%= d.input :latitude, as: :hidden %>
+   <% end %>
+</span>
+</span>
+
+<span id="preferences" class="carpool"> 
+    <span id="music" class="carpool"> 
+       <%= c.simple_fields_for :preferences do |p| %>
+           <%= p.input :music, 
+                :as => :select, 
+                :collection => [['I like a Quite ride','mred'],['Depends On the Kind of Music','myellow'],['I enjoy all kinds of music','mgreen']], 
+                :include_blank => false, 
+                :label => "Music" %>
+    </span>
+
+
+    <span id="pets" class="carpool"> 
+            <%= p.input :pets, 
+                :as => :select, 
+                :collection => [['No pets please. Sorry','pred'],['Depends On the pet. Ask me first','pyellow'],['All pets are welcome','pgreen']], 
+                :include_blank => false, 
+                :label => "Pets" %>
+    </span>
+</span>
+
+<span id="preferences2" class="carpool"> 
+    <span id="smoking" class="carpool"> 
+            <%= p.input :smoking, 
+                :as => :select, 
+                :collection => [['No smoking','sred'],['Depends On the situation. Ask me','syellow'],['You can smoke','sgreen']], 
+                :include_blank => false, 
+                :label => "Smoking" %>
+    </span>
+
+    <span id="food" class="carpool"> 
+            <%= p.input :food, 
+                :as => :select, 
+                :collection => [['No eating in car','fred'],['No crumbs in the car please. Eat neat','fyellow'],['Eat whenever you like','fgreen']], 
+                :include_blank => false, 
+                :label => "Food" %>
+
+        
+    </span>
+    </span>
+
+
+   <span id="ladies" class="carpool"> 
+    <%= p.input :ladies, as: :boolean %>
+       <% end %>
+    </span>
+    <span id="bt" class="carpool"> 
+     <%= c.button :submit %>
+      <% end %>
+    </span>
+
+</div>
+
+<div id="map-canvas2"></div>

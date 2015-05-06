@@ -1,0 +1,25 @@
+
+<% if !@cars.empty?  %>
+	<% @cars.each do |car| %>
+		 <% if car.user.id == current_user.id %>
+		 <div id="car-show-main">
+		<span id="car-show-avatar">
+			<div class="car-avatar">
+			<%= image_tag car.picture.url(:medium) %>
+			</div>
+		</span>
+		 <span id="car-show-name"><%= link_to "#{car.brand}", car %></span>
+		 <span id="car-show-edit"><%= link_to 'edit', edit_car_path(car) %> </span>
+		 <span id="car-show-delete"><%= link_to 'delete', car, method: :delete, data: {confirm: "Are you sure?"} %></span>
+		 <% end %>
+	<% end %>
+</div>
+
+<% else %>
+  <p id="heading"> No car to display </p> <br>
+  <%= link_to "Add Car", new_car_path ,:id=>"new",:class=>"btn btn-blue"%>
+<% end %>
+
+
+
+

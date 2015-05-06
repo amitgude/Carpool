@@ -1,0 +1,49 @@
+// Place all the styles related to the cars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$mobile: new-breakpoint(max-width 480px 12);
+
+.car_container{
+@include outer-container;
+margin-left: auto;
+margin-right: auto;
+@include span-columns(8);
+@include shift(2);
+height: 292px;
+@include media($mobile) {
+    height: 163px;
+ }
+
+	#heading{
+	@include span-columns(12);
+	text-align:center;
+	font-size: 3em;
+	 @include media($mobile) {
+     font-size: 1.5em;
+  	}
+	}
+	#new {
+	@include span-columns(2);
+	@include shift(6);
+	width: 35.702%;
+	margin-left: 32.179%;
+	font-size: 3vw;
+	}
+}
+
+
+.new_car {
+	
+}
+
+.car-avatar img{
+	width: 140px;
+	height: 140px;
+	border-radius: 70px;
+	-webkit-border-radius: 70px;
+	-moz-border-radius: 70px;
+	border:8px solid #ccb;
+}
+
+

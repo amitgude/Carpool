@@ -1,4 +1,149 @@
 @import 'bourbon';
-@import 'neat';
+@import 'neat/neat';
 @import 'base/base';
+@import 'reset';
+@import "font-awesome";
 @import 'carpools';
+@import 'cars';
+@import 'navigation';
+@import 'parallax';
+@import 'modal';
+@import 'body';
+@import 'footer';
+@import 'mobile-test';
+@import 'button';
+@import 'create_carpool';
+@import 'edit_account';
+@import 'sliding-panel';
+@import 'my-account';
+@import 'car-edit';
+@import 'add-testimonial';
+@import 'table-minimal';
+@import 'accordion-tabs-minimal';
+@import 'message-inbox';
+@import 'tables';
+@import 'show-rides';
+@import 'login-user';
+
+.float_label input {
+  outline:none;
+  border:none;
+  border-bottom:4px solid cornflowerblue;
+  color:gray;
+}
+
+
+.float_label label {
+  position:absolute;
+  top: 30%;
+  padding-left: 1%;
+  padding-top: 1.8%;
+  font-size: 1.6em;
+  transform:translateY(-20%);
+  pointer-events:none;
+  font-style:italic;
+  color:#bbb;
+  transition:.2s ease all;
+  position: absolute;
+}
+
+.float_label input:focus {
+  border-color:lightgray;
+}
+
+.float_label input:focus ~ label,
+.float_label input.has-value ~ label {
+  top:0;
+  font-size:14px;
+  color:white;
+}
+
+
+#map-canvas2{
+  display:none;
+}
+
+.error,.error_notification{
+  color:red;
+  margin-left:5px;
+}
+
+.hint{
+  color:blue;
+}
+
+#notice_wrapper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    background: red;
+    .alert, .notice {
+        padding: 2.5rem 0;
+        text-align: center;
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        letter-spacing: 1px;
+    }
+}
+$mobile: new-breakpoint(max-width 480px 12);
+
+.test {
+  @include outer-container;
+  @include media($mobile) {
+     @include span-columns(10);
+     @include shift(1);
+  }
+  }
+
+.find-rides-main{
+@include span-columns(12);
+background-color: rgba(11, 11, 12, 0.5);
+height: 88px;
+margin-top: -87px;
+position: absolute;
+ @include media($mobile) {
+    height: 172px;
+    margin-top: 0px;
+    position: relative;
+  }
+
+}
+
+.footer-img{
+	margin-bottom: -7px;
+}
+
+
+$mobile: new-breakpoint(max-width 480px 12);
+
+.content {
+  @include media($mobile) {
+    display: none;
+  }
+}
+
+#js-parallax-window {
+  @include media($mobile) {
+    display: none;
+  }
+}
+
+
+
+.my-rides{
+  @include outer-container;
+}
+
+#yield-test{
+  min-height:300px;
+}
+
+.text-1 {
+  font-size: 1.2em;
+  font-family: "Dancing Script";
+}
+
+

@@ -1,0 +1,185 @@
+.create-carpool {
+@include outer-container;
+
+$mobile: new-breakpoint(max-width 500px 12);
+
+#heading{
+text-align:center;
+font-size: 41px;
+}
+
+#other{
+@include media($mobile) {
+	@include outer-container;
+  		@include span-columns(12);
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+}
+
+
+#time-date{
+@include outer-container;
+#date{
+	@include span-columns(6);
+	@include media($mobile) {
+	@include outer-container;
+  		@include span-columns(12);
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+}
+#time{
+	@include span-columns(6);
+	@include media($mobile) {
+	@include outer-container;
+  		@include span-columns(12);
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+
+}
+
+}
+
+#price-laggage{
+	@include outer-container;
+	#price{
+		@include span-columns(6);
+		@include media($mobile) {
+		@include outer-container;
+  			@include span-columns(12);
+  			@include span-columns(10);
+  		@include shift(1);
+	}
+	}
+	#luggage{
+		@include span-columns(6);
+		@include media($mobile) {
+		@include outer-container;
+  		@include span-columns(12);
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+
+	}
+}
+
+#seats-car{
+	@include outer-container;
+	#seats{
+		@include span-columns(6);
+		@include media($mobile) {
+		@include outer-container;
+  		@include span-columns(12);
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+
+	}
+	#car{
+		@include span-columns(6);
+		@include media($mobile) {
+		@include outer-container;
+  		@include span-columns(12);
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+
+	}
+}
+
+
+#source-destination{
+	@include outer-container;
+	#source{
+		@include span-columns(6);
+		@include media($mobile) {
+		@include outer-container;
+  		@include span-columns(12);
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+
+	}
+	#destination{
+		@include span-columns(6);
+		@include media($mobile) {
+		@include outer-container;
+  		@include span-columns(12);
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+
+	}
+}
+
+
+#preferences{
+	@include outer-container;
+	#music{
+		@include span-columns(6);
+		@include media($mobile) {
+		@include outer-container;
+  		@include span-columns(12);
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+
+	}
+	#pets{
+		@include span-columns(6);
+		@include media($mobile) {
+		@include outer-container;
+  		@include span-columns(12);
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+
+	}
+
+}	
+
+#preferences2{
+	@include outer-container;
+	#smoking{
+		@include span-columns(6);
+		@include media($mobile) {
+		@include outer-container;
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+
+	}
+	#food{
+		@include span-columns(6);
+		@include media($mobile) {
+		@include outer-container;
+  		@include span-columns(12);
+  		@include span-columns(10);
+  		@include shift(1);
+	}
+
+	}
+}
+
+
+	#ladies{
+		@include span-columns(12);
+	}
+	#bt{
+		@include span-columns(6);
+		@include shift(5);
+		@include media($mobile) {
+	@include outer-container;
+  		
+  		@include span-columns(6);
+  		@include shift(5);
+	}
+	}
+
+
+
+
+}
+

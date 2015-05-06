@@ -36,6 +36,14 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts-as-messageable (0.4.10)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      ancestry (>= 1.3.0)
+      railties (>= 3.0.0)
+    acts_as_votable (0.10.0)
+    ancestry (2.1.0)
+      activerecord (>= 3.0.0)
     arel (6.0.0)
     bcrypt (3.1.10)
     better_errors (2.1.1)
@@ -50,6 +58,10 @@ GEM
     builder (3.2.2)
     byebug (4.0.4)
       columnize (= 0.9.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.7)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -69,12 +81,21 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.4.0)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
+    geocoder (1.2.8)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    gon (5.2.3)
+      actionpack (>= 2.3.0)
+      json
+      multi_json
+      request_store (>= 1.0.5)
     haml (4.0.6)
       tilt
+    hashie (3.4.1)
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (2.2.12)
@@ -87,6 +108,7 @@ GEM
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
     json (1.8.2)
+    jwt (1.4.1)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -98,6 +120,8 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.11.0)
+    multi_xml (0.5.5)
+    multipart-post (2.0.0)
     mysql2 (0.3.18)
     neat (1.7.2)
       bourbon (>= 4.0)
@@ -105,7 +129,28 @@ GEM
     nested_form (0.3.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    oauth2 (1.0.0)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-facebook (2.0.1)
+      omniauth-oauth2 (~> 1.2)
+    omniauth-oauth2 (1.2.0)
+      faraday (>= 0.8, < 0.10)
+      multi_json (~> 1.3)
+      oauth2 (~> 1.0)
+      omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    paperclip (4.2.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.18.1)
     rack (1.6.0)
     rack-pjax (0.8.0)
@@ -156,6 +201,7 @@ GEM
     rdoc (4.2.0)
       json (~> 1.4)
     remotipart (1.2.1)
+    request_store (1.1.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     safe_yaml (1.0.4)
@@ -172,7 +218,7 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    spring (1.3.3)
+    spring (1.3.5)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -204,16 +250,23 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-messageable
+  acts_as_votable (~> 0.10.0)
   better_errors (~> 2.1.1)
   bourbon (~> 4.2.2)
   byebug
   coffee-rails (~> 4.1.0)
   devise
+  font-awesome-rails
+  geocoder (~> 1.2.8)
+  gon (~> 5.2.3)
   jbuilder (~> 2.0)
   jquery-rails
   mysql2
   neat (~> 1.7.2)
   nested_form (~> 0.3.2)
+  omniauth-facebook
+  paperclip (~> 4.2)
   pg
   rails (= 4.2.0)
   rails_admin (~> 0.6.7)
@@ -221,7 +274,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form
-  spring
+  spring (~> 1.3.5)
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

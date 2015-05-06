@@ -1,9 +1,29 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :carpools
+  match 'users/:id/message' => 'users#message', :via => [:get, :post]
+  match '/messages' => 'users#inbox', :via => [:get,:post]
+  match '/myrides' => 'carpools#rides', :via => [:get,:post]
+   #match '/mypassengers/:id' => 'carpools#mypassengers', :via => [:get,:post]
+  resources :users do
+     member do
+    put "like", to: "users#upvote"
+    put "Dislike", to: "users#downvote"
+   end
+  end
+  resources :testimonials
+  resources :carpools do
+    resources :passengers
+    match 'mypassengers' => 'carpools#mypassengers', via: [:get, :post]
+  end
+  resources :cars
+  match "/carpools/find" => "carpools#find" , :via => :post
+  match "/carpools/search" => "carpools#search" , :via => :get
   root 'carpools#index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
- 
+  
+  match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

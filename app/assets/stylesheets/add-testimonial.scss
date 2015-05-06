@@ -1,0 +1,14 @@
+#heading1{
+	
+	text-align:center;
+	font-size: 3em;
+	 @include media($mobile) {
+     font-size: 1.5em;
+  	}
+  	}
+
+ .testimonial-add{
+
+ @include outer-container;
+ }
+

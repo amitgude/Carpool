@@ -1,0 +1,17 @@
+
+$mobile: new-breakpoint(max-width 480px 12);
+#my-account{
+	@include outer-container;
+	.my-account-row{
+		@include outer-container;
+	}
+	.my-account-edit{
+	@include span-columns(6);
+	padding-top: 10px;
+	  @include media($mobile) {
+    @include span-columns(12);
+
+  }
+
+	}
+}

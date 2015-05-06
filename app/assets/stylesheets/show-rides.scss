@@ -1,0 +1,20 @@
+.main-show-ride{
+	@include outer-container;
+	#show-ride-map{
+		@include span-columns(5);
+		@include reset-display;
+		@include pad(); 
+	}
+	#show-ride-details{
+		@include span-columns(7);
+		@include pad();
+		@include outer-container;
+		.ride-detail{
+		@include span-columns(12);
+		.detail{
+		@include span-columns(12);
+		}
+		
+		}
+	
+}}

@@ -1,0 +1,28 @@
+<% if @user.picture.url == "blank.png" && @user.provider=="facebook"%>   
+   <%= image_tag "http://graph.facebook.com/#{@user.uid}/picture?width=50&height=50" %>
+<% else %>
+    <%= image_tag @user.picture.url(:medium), :style=>"height: 53px;"%>
+<% end %>
+
+<br>
+username : <%= @user.username %>
+
+email : <%= @user.email %>
+
+phone num : <%= @user.phone_number %>
+
+<%= link_to "Like", like_user_path(@user), method: :put %> 
+<%= link_to "Dislike", Dislike_user_path(@user), method: :put %>
+<br>
+likes: <%= @user.get_upvotes.size %>
+
+<div>
+  <%= form_tag(:action => 'message') do %>
+   <%= label_tag(:title, "Title") %>
+   <%= text_field_tag(:title) %>
+   <%= label_tag(:message, "Message") %>
+   <%= text_field_tag(:message) %>
+   <%= submit_tag("Message") %>
+  <% end %>
+
+</div>

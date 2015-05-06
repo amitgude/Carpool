@@ -1,0 +1,57 @@
+<div class="message-inbox">
+<p id="heading1"> Messages </p> 
+<ul class="accordion-tabs-minimal">
+  <li class="tab-header-and-content">
+    <a href="#" class="tab-link is-active">Recieved Messages</a>
+    <div class="tab-content">
+      <% @recieved.each do |r| %>
+	 
+
+    <table class="tables">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Topic</th>
+          <th>Body</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to "#{User.find(r.sent_messageable_id).username}", User.find(r.sent_messageable_id) %></td>
+          <td><%= r.topic %></td>
+          <td> <%= r.body %></td>
+          <td><button>Delete</button></td>
+           <% end %>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </li>
+  <li class="tab-header-and-content">
+    <a href="#" class="tab-link">Sent Messages</a>
+    <div class="tab-content">
+     <% @sent.each do |s| %>
+     <table class="tables">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Topic</th>
+          <th>Body</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to "#{User.find(s.received_messageable_id).username}", User.find(s.received_messageable_id)  %></td>
+          <td><%= s.topic %></td>
+          <td> <%= s.body %></td>
+          <td><button>Delete</button></td>
+           <% end %>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </li>
+</ul>
+</div>

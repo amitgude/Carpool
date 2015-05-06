@@ -1,0 +1,40 @@
+<%= link_to "Home" , root_path %> <br>
+Created by: <%= link_to "#{@carpool.user.username}", @carpool.user %>  
+email: <%= @carpool.user.email %> <br>
+<% if @carpool.user.picture.url == "blank.png" && @carpool.user.provider=="facebook"%>   
+  <%= image_tag "http://graph.facebook.com/#{@carpool.user.uid}/picture?width=100&height=100" %>
+<% else %>
+  <%= image_tag @carpool.user.picture.url(:medium), :style=>"height: 53px;"%>
+<% end %>
+source:
+<div id="source">
+ <%= @carpool.source.first.source %> 
+</div>
+
+destination:
+<div id="dest">
+ <%= @carpool.destination.first.destination %> 
+</div>
+
+luggage size : <%= @carpool.luggage_size %> <br>
+journey date : <%= @carpool.journey_date %> <br>
+depature_time : <%= @carpool.depature_time %> <br>
+other : <%=  @carpool.other %> <br>
+music : <%= image_tag("#{@carpool.preferences.first.music}.png")   %> <br>
+food : <%=  image_tag("#{@carpool.preferences.first.food}.png")  %> <br>
+pets : <%= image_tag("#{@carpool.preferences.first.pets}.png")  %> <br>
+smoking : <%= image_tag("#{@carpool.preferences.first.smoking}.png") %> <br>
+seats : <%= @carpool.seats.first.seats %>
+
+<div id="map-canvas">
+	
+</div>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    <%= render 'carpools/getMap.js.erb' %>
+  </script>
+<% end %>
+<% if @carpool.user.id != current_user.id %>
+<%= render('passengers/form') %>
+<% end %>

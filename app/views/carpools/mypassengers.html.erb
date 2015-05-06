@@ -1,0 +1,15 @@
+<% @passengers.each do |pas| %>
+  <% user = User.find(pas.passenger) %>
+<% if user.picture.url == "blank.png" && user.provider=="facebook"%>   
+   <%= image_tag "http://graph.facebook.com/#{user.uid}/picture?width=50&height=50" %>
+<% else %>
+    <%= image_tag user.picture.url(:medium), :style=>"height: 53px;"%>
+<% end %>
+<p><%= user.phone_number%><p>
+<p><%=link_to  "#{user.username}", user_path(pas.passenger) %></p>
+<p><%= user.email%></p>
+<hr>
+<!-- dp name phonu email  -->
+<% end %>
+
+

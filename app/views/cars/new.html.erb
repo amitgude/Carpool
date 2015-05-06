@@ -1,0 +1,6 @@
+<div class="error">
+<% if @errors %>
+<p> <%=pluralize(@errors.size, 'Error') %> prevented the form from being submitted </p>
+<% end %>
+</div>
+<%= render('form') %>

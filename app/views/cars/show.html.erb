@@ -1,0 +1,10 @@
+<%= link_to "Home", root_path %>
+<%= link_to "Back", cars_path %>
+<div class="car-avatar">
+<%= image_tag @car.picture.url(:medium) %>
+</div>
+
+brand : <%= @car.brand %> <br>
+color : <%= @car.color %> <br>
+model : <%= @car.model %> <br>
+seats : <%= @car.seats %> <br>

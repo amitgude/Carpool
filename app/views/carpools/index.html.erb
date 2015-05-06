@@ -1,2 +1,133 @@
-<h1>Carpools#index</h1>
-<p>Find me in app/views/carpools/index.html.erb</p>
+
+<!--/mobile div for the buttons -->
+  <div class="mobile-div">
+
+      <%= link_to new_carpool_path, method: :get do%>
+        <i class="fa fa-briefcase find-ride btn btn-inverse" style="margin-right: 1px;">Find Ride</i>
+      <% end %>
+      <%= link_to new_carpool_path, method: :get do%>
+        <i class="fa fa-car btn offer-ride btn-inverse" >Offer Ride</i>
+      <% end %>
+
+
+  </div>
+<!--/mobile div for the buttons -->
+
+<!--here Image parallax start -->
+  <div id="js-parallax-window" class="parallax-window">
+
+    <div id="js-parallax-background" class="parallax-background" >
+
+      <%= image_tag("parallax.jpg") %>
+    </div>
+  </div>
+<!--image parallax end -->
+
+<!-- search form -->
+<div class="find-rides-main">
+  <div class="find-rides">
+      <%= form_tag(:action => 'find') do %>
+
+        <span id="source-span" class="float_label">
+        <%= text_field_tag (:source), nil, :required => true,:placeholder => ""%>
+        <label>Enter source</label>
+        </span>
+
+        <span id="destination-span" class="float_label">
+        <%= text_field_tag (:destination), nil, :required => true ,:placeholder => ""%>
+        <label>Enter destination</label>
+        </span>
+
+
+       <%= submit_tag "Search", :class=> "btn btn-blue", :id=> "search-button" %>
+      <% end %>
+  </div>
+   <div id="map-canvas2"></div>
+</div>
+<!--/search form -->
+
+<!-- description start -->
+  <article class="type-system-slab test">
+    <h2>Tripda is an online carpooling application created for people to share rides in a fun, easy and safe way. Our vision is to transform carpooling into a viable transportation alternative, one which allows passengers to travel with comfort and security while saving costs significantly.
+    </h2>
+  </article>
+<!--/ description start -->
+
+<!-- paralax working start -->
+  <div class="content">
+       <%= image_tag("how.jpg" ) %>
+        <div class="working-pics">
+          <div class="row img-row">
+            <figure class="columns space"><%= image_tag("1.jpg" ) %></figure>
+            <figure class="columns space"><%= image_tag("arrow.png") %></figure>
+            <figure class="columns space"><%= image_tag("2.jpg") %></figure>
+            <figure class="columns space"><%= image_tag("arrow.png") %></figure>
+            <figure class="columns space"><%= image_tag("3.jpg") %></figure>
+            <figure class="columns space"><%= image_tag("arrow.png") %></figure>
+            <figure class="columns space"><%= image_tag("4.jpg") %></figure>
+            <figure class="columns space"><%= image_tag("arrow.png") %></figure>
+            <figure class="columns space"><%= image_tag("5.jpg") %></figure>
+          </div>
+        </div>
+  </div>
+<!-- paralax working end -->
+
+<div class="ride_testimonial">
+<!-- recent rides start-->
+  <div class="recent-rides">
+    <p class="heading">Recent Rides</p>
+    <div id="buttons"><%= link_to image_tag("up_arrow.png",:id => "prev1") %> </div>
+      <div id="carousel1">
+        <div id="slides1">
+          <ul>
+             <% if !@carpools.empty? %>
+             <% @carpools.each do |c| %>
+             <li class="slide1" >
+             <div id="left">
+                <%= image_tag c.user.picture.url(:medium), :style=>"border-radius:50%;height:85px" %>
+              </div>
+              <div id="right">
+                <span id="info1"><h2><%= c.source.first.source %></h2></span>
+                <i id="info1" style="font-size: 4em;margin-top: -0.2em;" class="fa fa-long-arrow-right" ></i>
+
+                <span id="info1" ><h2><%= c.destination.first.destination %></h2></span>
+                <span id="info1" ><h2>  <%= c.price %> </h2></span>
+                 <span style="float: left;padding-left: 4em;"><h2> <%= c.journey_date %> </h2></span>
+              </div>
+
+
+
+
+             </li>
+             <% end %>
+             <% end %>
+          </ul>
+        </div>
+      </div>
+      <div id="buttons"><%= link_to image_tag("down_arrow.png",:id => "next1") %> </div>
+    </div>
+<!-- testimonial start-->
+   <div class="testimonial">
+   <p class="heading">Testimonials</p>
+    <div id="buttons"><%= link_to image_tag("up_arrow.png",:id => "prev2") %> </div>
+        <div id="carousel2">
+        <div id="slides">
+            <ul>
+            <% if !@testimonials.empty? %>
+            <% @testimonials.each do |t| %>
+            <li class="slide">
+
+               <%= image_tag t.user.picture.url(:medium), :style=>"height: 100px;width: 100px;border-radius:50%"%>
+               <h1 id="name"><%= t.user.username %></h1>
+               <p><%= t.message %></p>
+            </li>
+             <% end %>
+             <% end %>
+            </ul>
+        </div>
+        </div>
+        <div id="buttons"><%= link_to image_tag("down_arrow.png",:id => "next2") %> </div>
+    </div>
+</div>
+<!-- / testimonial-->
+<!-- ride and testimonial -->
