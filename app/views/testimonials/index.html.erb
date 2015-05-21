@@ -1,31 +1,17 @@
-
-
 <div class="testimonial-add">
-	<p id="heading1"> Add new testimonial </p> <br>
-	<center >
-	<!--<%= link_to "New Testimonial", new_testimonial_path, method: :get,:class => "btn btn-blue btn-lg" %>-->
-	<label for="modal-1">
-    <div class="modal-trigger btn btn-blue btn-lg">Add Testimonial</div>
-  	</label>
-
-	</center>
-	<ul>
-	<% @testimonials.each do |t| %>
-	<li> <h3> <%= t.message %> </h3> 
-	<%= link_to 'edit', edit_testimonial_path(t) %> <br>
-	<%= link_to 'delete', t, method: :delete, data: {confirm: "Are you sure?"} %></li> 
-	<% end %>
-	</ul>
+	<div id="test-add-content">
+		<%= render('form') %>
+	</div>
+	<div class="testimonial-message">
+		<% @testimonials.each do |t| %><br><hr>
+		<span class="message-body"><%= t.message %> 
+		</span>
+		<span class="message-button1"><%= link_to 'edit', edit_testimonial_path(t),:class => "btn btn-blue btn-sm" %>
+		</span>
+		<span class="message-button1"><%= link_to 'delete', t, method: :delete, data: {confirm: "Are you sure?"},:class => "btn btn-red btn-sm" %>
+		</span>
+		<% end %>
+	</div>
 </div>
 
-<div class="modal">
- 
-  <input class="modal-state" id="modal-1" type="checkbox" />
-  <div class="modal-fade-screen">
-    <div class="modal-inner">
-      <div class="modal-close" for="modal-1"></div>
-      <h1>Modal Title</h1>
-		<p>here the form will come to add the <%= render('form') %>
-    </div>
-  </div>
-</div>
+

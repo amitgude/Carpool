@@ -1,31 +1,31 @@
 
 <div class="edit-account">
-<p id="heading">Edit your account <%= resource_name.to_s.humanize %></p>
+<p id="heading1">Edit your account </p>
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <span class=""><%= f.input :email, required: true, autofocus: true %>  </span>
     <%= f.input :username %>
-
     <%= f.input :phone_number %>
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
     <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
     <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+    <%= f.input :current_password, hint: "we need your current password to confirm your changes (for facebook user the default password is '12345678')", required: true %>
     <%= f.input :picture, as: :file %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <span class="action-button"><%= f.button :submit, "Update",:class => "btn btn-blue" %></span >
+    <span class="action-button"><%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,:class => "btn btn-red"%></span >
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
-<%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
 
-<%= link_to "Back", :back %>
+
+
+
 </div>

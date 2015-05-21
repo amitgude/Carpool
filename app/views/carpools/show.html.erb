@@ -1,40 +1,119 @@
-<%= link_to "Home" , root_path %> <br>
-Created by: <%= link_to "#{@carpool.user.username}", @carpool.user %>  
-email: <%= @carpool.user.email %> <br>
-<% if @carpool.user.picture.url == "blank.png" && @carpool.user.provider=="facebook"%>   
-  <%= image_tag "http://graph.facebook.com/#{@carpool.user.uid}/picture?width=100&height=100" %>
-<% else %>
-  <%= image_tag @carpool.user.picture.url(:medium), :style=>"height: 53px;"%>
-<% end %>
-source:
-<div id="source">
- <%= @carpool.source.first.source %> 
+
+<div id="show-carpool">
+
+<div id="show-first">
+<p id="heading1">Carpool details </p>
+<br>
+	<div id="map-canvas">
+	  
+	</div>
+
+	<% content_for :head do %>
+	  <script type="text/javascript">
+	    <%= render 'carpools/getMap.js.erb' %>
+	  </script>
+	<% end %>
+
+	<div id="show-user-details">
+		<span class="show-users">
+		<% if @carpool.user.picture.url == "blank.png" && @carpool.user.provider=="facebook"%>   
+		  <%= image_tag "http://graph.facebook.com/#{@carpool.user.uid}/picture?width=120&height=120",:class=>"img-size"%>
+		<% else %>
+		  <%= image_tag @carpool.user.picture.url, :class=>"img-size"%>
+		<% end %>
+		</span>
+
+		<span class="show-users">
+		<span>Owner:</span> <%= link_to "#{@carpool.user.username}", @carpool.user %> 
+		</span>
+		<span class="show-users"> 
+		<span>Email:</span> <%= @carpool.user.email %> <br>
+		</span>
+		<span class="show-users"> 
+		<span>Phone no:</span> <%= @carpool.user.phone_number %> <br>
+		</span>
+		<span class="show-users"> 
+		<span>Likes:</span> <%= @carpool.user.get_upvotes.size %> <br>
+		</span>
+
+		<div class="show-users">
+		<span style="text-align:left">Preferences: </span>
+		<br/>
+			<span class="show-u-preference tooltip-item" style="margin-left:10px"><%= image_tag("#{@carpool.preferences.first.music}.png")   %> 
+				<div class="tooltip">
+				     
+				    <p><%= instance_variable_get("@#{@carpool.preferences.first.music}") %></p>
+				</div>
+			</span>
+			<span class="show-u-preference tooltip-item"><%=  image_tag("#{@carpool.preferences.first.food}.png") %> 
+				<div class="tooltip">
+				    <p><%= instance_variable_get("@#{@carpool.preferences.first.food}")%></p>
+				</div>
+			</span>
+			<span class="show-u-preference tooltip-item"><%= image_tag("#{@carpool.preferences.first.pets}.png")  %>
+				<div class="tooltip">
+				    <p><%= instance_variable_get("@#{@carpool.preferences.first.pets}")%></p>
+				</div>
+			</span> 
+			<span class="show-u-preference tooltip-item"><%= image_tag("#{@carpool.preferences.first.smoking}.png") %>
+				<div class="tooltip">
+				    <p><%= instance_variable_get("@#{@carpool.preferences.first.smoking}")%></p>
+				</div>
+			</span>
+			
+		</div>
+	</div>
 </div>
 
-destination:
-<div id="dest">
- <%= @carpool.destination.first.destination %> 
+<div id="show-user-trip-1">
+	<div id="show-user-trip">
+
+		<div class="users-trip" id="source">
+		 <%= @carpool.source.first.source %> 
+		</div>
+		<div class="users-trip1" id="source">
+		<i class="fa fa-long-arrow-right fa-2x"></i>
+		</div>
+		<div class="users-trip" id="dest">
+		 <%= @carpool.destination.first.destination %> 
+		</div>
+	</div>
+
+	<div class="show-other">
+	<span class="show-u-other font2"><span>seats:</span> <%= @carpool.seats.first.seats %></span>
+	<span class="show-u-other font2"><span>luggage: </span> <%= @carpool.luggage_size %><span> Kg</span> </span>
+	
+	</div>
+
 </div>
 
-luggage size : <%= @carpool.luggage_size %> <br>
-journey date : <%= @carpool.journey_date %> <br>
-depature_time : <%= @carpool.depature_time %> <br>
-other : <%=  @carpool.other %> <br>
-music : <%= image_tag("#{@carpool.preferences.first.music}.png")   %> <br>
-food : <%=  image_tag("#{@carpool.preferences.first.food}.png")  %> <br>
-pets : <%= image_tag("#{@carpool.preferences.first.pets}.png")  %> <br>
-smoking : <%= image_tag("#{@carpool.preferences.first.smoking}.png") %> <br>
-seats : <%= @carpool.seats.first.seats %>
 
-<div id="map-canvas">
+<div class="show-date-time font2">
+	<span class="date-time">
+		<i class="fa fa-calendar fa-2x"></i> 
+		<span>journey date: </span> 
+		<%= @carpool.journey_date.strftime("%d, %B, %Y") %>
+	</span>
+	<span class="date-time">
+		<i class="fa fa-clock-o fa-2x"></i>
+		<span>depature time: </span> 
+		<%= @carpool.depature_time.strftime("%I:%M %p") %> 
+	</span>
 	
 </div>
 
-<% content_for :head do %>
-  <script type="text/javascript">
-    <%= render 'carpools/getMap.js.erb' %>
-  </script>
-<% end %>
-<% if @carpool.user.id != current_user.id %>
+<div class="date-time-other font2"><span>More infrmation: </span> <%=  @carpool.other %>
+</div>
+
+
+<!-- I have changed if loop for validating booking -->
+<div class="book-button">
+<span id="show-button">
+<% if @carpool.user.id != current_user.id && (Passenger.where(:carpool_id => @carpool.id).where(:passenger => current_user.id).size) == 0%>
 <%= render('passengers/form') %>
 <% end %>
+</span>
+</div>
+
+
+</div>

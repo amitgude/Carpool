@@ -5,8 +5,8 @@
 <%= Gon::Base.render_data({}) %>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
-<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>  
- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>-->
+<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>  -->
+ <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <%= csrf_meta_tags %>
@@ -24,33 +24,31 @@
 
 
 <!-- Header start -->
-<header class="navigation" role="banner">
-  <%= link_to image_tag("logo.png",:class => "logo"), root_path, method: :get %>
-
-  <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
-
- MENU
-  </a>
-  <nav role="navigation">
-    <ul id="js-navigation-menu" class="navigation-menu show">
-
-    <% if user_signed_in? %>
+<nav class="scrolled">
+ 
+     <%= link_to image_tag("logo.png",:class => "logo"), root_path, method: :get ,:style=> "margin-top:0px;"%>
+     
+  <ul>
+     <% if user_signed_in? %>
+     
     <li id="offer-ride-desktop" class="nav-link">
 
 
-      <%= link_to '<i class="fa fa-car"></i> offer ride'.html_safe, new_carpool_path, method: :get , :class=>'btn btn-inverse'%>
+      <%= link_to '<i class="fa fa-car"></i> offer ride'.html_safe, new_carpool_path, method: :get , :class=>'btn btn-inverse btn-lg'%>
     </li>
 
-  <% if current_user.received_messages.unreaded.size > 0 %>
-    <li class="nav-link"><%= link_to '<i class="fa fa-envelope" style="color:red"></i>'.html_safe, messages_path,method: :get, class: 'fa-fw fa-2x'%>
-     <%= "[#{current_user.messages.unreaded.size}]" %>
+
+    <% if current_user.received_messages.unreaded.size > 0 %>
+    <li class="nav-link envolpe1"><%= link_to '<i class="fa fa-envelope" style="color:red"></i>'.html_safe, messages_path,method: :get, class: 'fa-fw fa-3x'%>
+    <span id="notification-num">
+     <%= "[#{current_user.received_messages.unreaded.size}]" %>
+    </span>
     </li>
   <% else %>
-<li class="nav-link"><%= link_to '<i class="fa fa-envelope"></i>'.html_safe, messages_path,method: :get, class: 'fa-fw fa-2x'%>
-    </li>
+  <li class="nav-link envolpe1"><%= link_to '<i class="fa fa-envelope"></i>'.html_safe, messages_path,method: :get, class: 'fa-fw fa-3x'%>
+      </li>
 
-   <% end %>
-
+  <% end %>
 
 
 
@@ -85,51 +83,29 @@
       </div>
     </li>
 
+
+
+
+      
+
     <% else %>
-    <li class="nav-link link1">
-      <label for="modal-1" class="modal-trigger">
-      <span class="sign-log" ><%= fa_icon 'user', class: 'fa-fw fa-lg' %>
-      <%= link_to "Sign In", new_user_session_path %>
-      </span>
-      </label>
+    <li class="nav-link">
+     
+
+      <%= link_to '<i class="fa fa-user fa-fw fa-2x"></i> Log in'.html_safe,new_user_session_path%>
+
+      
     </li>
-	  <li class="nav-link link1">
-      <label for="modal-2" class="modal-trigger">
-        <span class="sign-log" ><%= fa_icon 'user-plus',  class: ' fa-fw fa-lg' %>
-      <%= link_to "Sign Up", new_user_registration_path %>
-        </span>
-      </label>
+    
+      <li class="nav-link">
+      <%= link_to '<i class="fa fa-user-plus fa-fw fa-2x"></i> Sign Up '.html_safe, new_user_registration_path%>
     </li>
 
     <% end %>
-    </ul>
-  </nav>
+  </ul>
+</nav>
 
-<!--modal start -->
-<div class="modal">
-	<input class="modal-state" id="modal-1" type="checkbox" />
-	 <div class="modal-fade-screen">
-	    <div class="modal-inner">
-	      <div class="modal-close" for="modal-1"></div>
 
-	      <p class="modal-content">
-
-	      </p>
-	    </div>
-	</div>
-	<input class="modal-state" id="modal-2" type="checkbox" />
-	 <div class="modal-fade-screen">
-		    <div class="modal-inner">
-		      <div class="modal-close" for="modal-2"></div>
-
-		      <p class="modal-content">
-
-		      </p>
-		    </div>
-	 </div>
-</div>
-</header>
-<div style="height: 6em;"></div>
 <!-- Header end -->
 
 <% if notice %>
@@ -160,23 +136,26 @@
   <div class="footer-logo">
     <!-- <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo image"> -->
   </div>
+   <h3 style="color:white;text-align:center;"> Follow Us </h3>
   <div class="footer-links">
+
     <ul>
-      <li><h3>Content</h3></li>
-      <li><a href="javascript:void(0)">About</a></li>
-      <li><a href="javascript:void(0)">Contact</a></li>
-      <li><a href="javascript:void(0)">Products</a></li>
+      <li><h3>Amit Gude</h3></li>
+      <li><a href="http://www.facebook.com/amit.gude">Facebook</a></li>
+      <li><a href="https://twitter.com/AmitGude">Twitter</a></li>
+      
     </ul>
     <ul>
-      <li><h3>Follow Us</h3></li>
-      <li><a href="javascript:void(0)">Facebook</a></li>
-      <li><a href="javascript:void(0)">Twitter</a></li>
-      <li><a href="javascript:void(0)">YouTube</a></li>
+      <li><h3>Wolfgang Furtado</h3></li>
+      <li><a href="http://www.facebook.com/wolfgang.furtado10">Facebook</a></li>
+      <li><a href="https://twitter.com/WolfgangFurtado">Twitter</a></li>
+      
     </ul>
     <ul>
-      <li><h3>Legal</h3></li>
-      <li><a href="javascript:void(0)">Terms and Conditions</a></li>
-      <li><a href="javascript:void(0)">Privacy Policy</a></li>
+      <li><h3>Saeel Parulekar</h3></li>
+      <li><a href="http://www.facebook.com/saeel.parulekar">Facebook</a></li>
+      <li><a href="https://twitter.com/SaeelParulekar">Twitter</a></li>
+      
     </ul>
   </div>
 

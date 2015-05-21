@@ -3,9 +3,6 @@
   <div class="mobile-div">
 
       <%= link_to new_carpool_path, method: :get do%>
-        <i class="fa fa-briefcase find-ride btn btn-inverse" style="margin-right: 1px;">Find Ride</i>
-      <% end %>
-      <%= link_to new_carpool_path, method: :get do%>
         <i class="fa fa-car btn offer-ride btn-inverse" >Offer Ride</i>
       <% end %>
 
@@ -30,12 +27,12 @@
 
         <span id="source-span" class="float_label">
         <%= text_field_tag (:source), nil, :required => true,:placeholder => ""%>
-        <label>Enter source</label>
+        <label id="find-enter-source">Enter source</label>
         </span>
 
         <span id="destination-span" class="float_label">
         <%= text_field_tag (:destination), nil, :required => true ,:placeholder => ""%>
-        <label>Enter destination</label>
+        <label id="find-enter-destination">Enter destination</label>
         </span>
 
 
@@ -48,7 +45,7 @@
 
 <!-- description start -->
   <article class="type-system-slab test">
-    <h2>Tripda is an online carpooling application created for people to share rides in a fun, easy and safe way. Our vision is to transform carpooling into a viable transportation alternative, one which allows passengers to travel with comfort and security while saving costs significantly.
+    <h2>ShareRide is an online carpooling application in which people can share rides. Our main aim is to allows passengers to travel comfortably and in a secure way while saving costs.
     </h2>
   </article>
 <!--/ description start -->
@@ -74,32 +71,35 @@
 
 <div class="ride_testimonial">
 <!-- recent rides start-->
-  <div class="recent-rides">
-    <p class="heading">Recent Rides</p>
-    <div id="buttons"><%= link_to image_tag("up_arrow.png",:id => "prev1") %> </div>
+    <div class="recent-rides">
+    <p class="heading dancing-script">Recent Rides</p>
+    <div id="buttons"><%= link_to image_tag("up_arrow.png",:id => "prev1") %> </div> 
       <div id="carousel1">
         <div id="slides1">
-          <ul>
+          <ul style="margin-top:9px">
              <% if !@carpools.empty? %>
              <% @carpools.each do |c| %>
-             <li class="slide1" >
-             <div id="left">
-                <%= image_tag c.user.picture.url(:medium), :style=>"border-radius:50%;height:85px" %>
-              </div>
-              <div id="right">
-                <span id="info1"><h2><%= c.source.first.source %></h2></span>
-                <i id="info1" style="font-size: 4em;margin-top: -0.2em;" class="fa fa-long-arrow-right" ></i>
-
-                <span id="info1" ><h2><%= c.destination.first.destination %></h2></span>
-                <span id="info1" ><h2>  <%= c.price %> </h2></span>
-                 <span style="float: left;padding-left: 4em;"><h2> <%= c.journey_date %> </h2></span>
-              </div>
-
-
-
-
+             <li class="slide1">
+              <span class="slide-rides"><% if c.user.picture.url == "blank.png" && c.user.provider=="facebook"%>   
+              <%= image_tag "http://graph.facebook.com/#{c.user.uid}/picture?width=100&height=100",:style=> "border-radius:50%;border:5px solid #18BD9D" %>
+              <% else %>
+                <%= image_tag c.user.picture.url, :style=> "width:75px;height:75px;border-radius:50%;border:5px solid #18BD9D"%>
+              <% end %>
+              </span>
+              <span class="slide-rides">
+              <p><span class="" style="color:#18BD9D;">Source</span> <%= c.source.first.source %></p>
+              </span>
+              <span class="slide-rides">
+              <p> <span class="" style="color:#18BD9D;">Destination</span> <%= c.destination.first.destination %></p>
+              </span>
+              <span class="slide-rides">
+              <p><span class="" style="color:#18BD9D;">Date</span><br><%= c.journey_date.strftime("%d, %B, %Y") %> </p>
+              </span>
+              <span class="slide-rides">
+              <p><span class="" style="color:#18BD9D;">Price</span><br> <%= c.price %> ₹ </p>
+              </span>
              </li>
-             <% end %>
+             <% end %>  
              <% end %>
           </ul>
         </div>
@@ -108,7 +108,7 @@
     </div>
 <!-- testimonial start-->
    <div class="testimonial">
-   <p class="heading">Testimonials</p>
+   <p class="heading dancing-script">Testimonials</p>
     <div id="buttons"><%= link_to image_tag("up_arrow.png",:id => "prev2") %> </div>
         <div id="carousel2">
         <div id="slides">
@@ -116,8 +116,12 @@
             <% if !@testimonials.empty? %>
             <% @testimonials.each do |t| %>
             <li class="slide">
+              <% if t.user.picture.url == "blank.png" && t.user.provider=="facebook"%>   
+                  <%= image_tag "http://graph.facebook.com/#{t.user.uid}/picture?width=120&height=120",:style=> "border-radius:50%;border:5px solid #18BD9D" %>
+              <% else %>
+                <%= image_tag t.user.picture.url, :style=> "width:120px;height:120px;border-radius:50%;border:5px solid #18BD9D"%>
+              <% end %>
 
-               <%= image_tag t.user.picture.url(:medium), :style=>"height: 100px;width: 100px;border-radius:50%"%>
                <h1 id="name"><%= t.user.username %></h1>
                <p><%= t.message %></p>
             </li>

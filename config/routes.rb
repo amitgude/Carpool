@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   match 'users/:id/message' => 'users#message', :via => [:get, :post]
   match '/messages' => 'users#inbox', :via => [:get,:post]
+  match '/messages/delete' => 'users#destroy_message', :via => [:delete]
   match '/myrides' => 'carpools#rides', :via => [:get,:post]
+  match '/Currentlocation' => 'locations#map', :via => [:get,:post]
+
    #match '/mypassengers/:id' => 'carpools#mypassengers', :via => [:get,:post]
   resources :users do
      member do
@@ -11,6 +14,7 @@ Rails.application.routes.draw do
    end
   end
   resources :testimonials
+  resources :locations
   resources :carpools do
     resources :passengers
     match 'mypassengers' => 'carpools#mypassengers', via: [:get, :post]

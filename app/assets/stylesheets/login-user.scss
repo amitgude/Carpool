@@ -2,6 +2,7 @@ $mobile: new-breakpoint(max-width 500px 12);
 .login-user{
 	@include outer-container;
 	@include span-columns(4);
+	margin-top: 77px;
 	@include shift(4);
 	@include media($mobile) {
   		@include span-columns(10);

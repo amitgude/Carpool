@@ -16,7 +16,7 @@ $mobile: new-breakpoint(max-width 480px 12);
   .testimonial {
     @include span-columns(6);
     height: 429px;
-    border:1px solid blue;
+    
     @include media($mobile) {
      display: none;
 
@@ -24,7 +24,17 @@ $mobile: new-breakpoint(max-width 480px 12);
   }
 }
 
+#buttons{
+  @include span-columns(12);
+  height: 40px;
+  
+}
 
+#buttons1{
+  @include span-columns(12);
+  height: 40px;
+  
+}
 
 .slide-rides{
   @include span-columns(2);

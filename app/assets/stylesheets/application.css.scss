@@ -24,39 +24,12 @@
 @import 'tables';
 @import 'show-rides';
 @import 'login-user';
+@import 'find-ride';
+@import 'tooltip';
+@import 'my-rides';
+@import 'user-profile';
+@import 'badge';
 
-.float_label input {
-  outline:none;
-  border:none;
-  border-bottom:4px solid cornflowerblue;
-  color:gray;
-}
-
-
-.float_label label {
-  position:absolute;
-  top: 30%;
-  padding-left: 1%;
-  padding-top: 1.8%;
-  font-size: 1.6em;
-  transform:translateY(-20%);
-  pointer-events:none;
-  font-style:italic;
-  color:#bbb;
-  transition:.2s ease all;
-  position: absolute;
-}
-
-.float_label input:focus {
-  border-color:lightgray;
-}
-
-.float_label input:focus ~ label,
-.float_label input.has-value ~ label {
-  top:0;
-  font-size:14px;
-  color:white;
-}
 
 
 #map-canvas2{
@@ -98,19 +71,8 @@ $mobile: new-breakpoint(max-width 480px 12);
   }
   }
 
-.find-rides-main{
-@include span-columns(12);
-background-color: rgba(11, 11, 12, 0.5);
-height: 88px;
-margin-top: -87px;
-position: absolute;
- @include media($mobile) {
-    height: 172px;
-    margin-top: 0px;
-    position: relative;
-  }
 
-}
+
 
 .footer-img{
 	margin-bottom: -7px;
@@ -126,19 +88,20 @@ $mobile: new-breakpoint(max-width 480px 12);
 }
 
 #js-parallax-window {
+  margin-top: -100px;
   @include media($mobile) {
     display: none;
   }
+
 }
 
 
 
-.my-rides{
-  @include outer-container;
-}
+
 
 #yield-test{
-  min-height:300px;
+  min-height:500px;
+    padding-top: 75px;
 }
 
 .text-1 {
@@ -147,3 +110,44 @@ $mobile: new-breakpoint(max-width 480px 12);
 }
 
 
+.font1 {
+    font-weight: 900;
+    font-size: 140%;
+}
+
+.font3 {
+    font-weight: 900;
+    font-size: 140%;
+    color:#18BD9D;
+}
+
+.font2{
+  font-weight: 900;
+    font-size: 120%;
+}
+
+.font3{
+  font-weight: 900;
+    font-size: 1.4em;
+}
+
+.dancing-script{
+  font-family: 'Dancing Script',cursive;
+  font-weight: 400;
+  font-size: 2.7em;
+  margin-top: 10px;
+  color: #18BD9D;
+}
+
+.map-show{
+  @include outer-container;
+  
+    #map-canvas3{
+      @include span-columns(6);
+      @include shift(3);
+      @include media($mobile) {
+   @include span-columns(10);
+      @include shift(1);
+}
+    }
+}

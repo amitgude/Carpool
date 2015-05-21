@@ -1,7 +1,7 @@
 $mobile: new-breakpoint(max-width 480px 12);
 #car-main{
 	
-	margin-top: 80px;
+	margin-top: 43px;
 	@include outer-container;
 	.car-row{
 		@include outer-container;
@@ -14,7 +14,6 @@ $mobile: new-breakpoint(max-width 480px 12);
     @include span-columns(10);
 
   		}
-
 	}
 }
 
@@ -53,27 +52,78 @@ height: 292px;
 
 
 .car-avatar img{
-	width: 250px;
+	width: 450px;
 	height: 140px;
-	border:8px solid #ccb;
+	border:5px solid #18BD9D;
+}
+
+
+#car-show-main{
+	margin-top: 55px;
+	@include outer-container;
+	#show-car{
+		margin-top: 25px;
+		@include span-columns(8);
+		@include shift(2);
+		@include media($mobile) {
+  			@include span-columns(10);
+  			@include shift(1);
+			}
+		#car-show-avatar{
+		
+			@include span-columns(5);
+			@include media($mobile) {
+			  @include span-columns(12);
+			}
+		}
+		#car-show-info{
+		
+			@include span-columns(5);
+			display: block;
+			@include media($mobile) {
+				@include span-columns(12);
+
+			#car-show-name{
+				@include span-columns(8);
+				@include media($mobile) {
+			  @include span-columns(6);
+			}
+			}
+			#car-show-button{
+				
+				@include span-columns(8);
+				@include media($mobile) {
+			  @include span-columns(6);
+			}			
+			}
+			  
+			}
+			
+			
+		}
+	}
+
 }
 
 
 
-#car-show-main{
-	@include outer-container;
-	margin-top: 25px;
-	#car-show-avatar{
-		@include span-columns(4);
-	}
-	#car-show-name{
-		@include span-columns(4);
-	}
-	#car-show-edit{
-		@include span-columns(2);
-	}
-	#car-show-delete{
-		@include span-columns(2);
-	}
 
+
+
+.add-car-button{
+@include span-columns(10);
+ @include shift(1);
+text-align: center;
+}
+	
+
+#show-car-details{
+	margin-top: 25px;
+	@include outer-container;
+	@include span-columns(4);
+	@include shift(4);
+	@include media($mobile) {
+	  @include span-columns(10);
+	  @include shift(1);
+	}
 }

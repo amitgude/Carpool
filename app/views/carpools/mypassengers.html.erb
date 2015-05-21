@@ -1,15 +1,23 @@
-<% @passengers.each do |pas| %>
-  <% user = User.find(pas.passenger) %>
-<% if user.picture.url == "blank.png" && user.provider=="facebook"%>   
-   <%= image_tag "http://graph.facebook.com/#{user.uid}/picture?width=50&height=50" %>
+<div class="passenger-list">
+<p id="heading1">Passenger details</p>
+
+<% if @passengers.count != 0 %>
+
+	<% @passengers.each do |pas| %>
+	  <% user = User.find(pas.passenger) %>
+	<% if user.picture.url == "blank.png" && user.provider=="facebook"%>   
+	   <%= image_tag "http://graph.facebook.com/#{user.uid}/picture?width=150&height=150" %>
+	<% else %>
+	    <%= image_tag user.picture.url, :style=>"width=150&height=150"%>
+	<% end %>
+	<p><%= user.phone_number%><p>
+	<p><%=link_to  "#{user.username}", user_path(pas.passenger) %></p>
+	<p><%= user.email%></p>
+
+	<hr>
+	<!-- dp name phonu email  -->
+	<% end %>
 <% else %>
-    <%= image_tag user.picture.url(:medium), :style=>"height: 53px;"%>
-<% end %>
-<p><%= user.phone_number%><p>
-<p><%=link_to  "#{user.username}", user_path(pas.passenger) %></p>
-<p><%= user.email%></p>
-<hr>
-<!-- dp name phonu email  -->
-<% end %>
-
-
+<p id="heading2">No passenger has booked your carpool </p>
+<%end %>
+</div>

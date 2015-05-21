@@ -1,10 +1,13 @@
-<%= link_to "Home", root_path %>
-<%= link_to "Back", cars_path %>
-<div class="car-avatar">
-<%= image_tag @car.picture.url(:medium) %>
+<div id="show-car-details">
+	<span id="car-details-img">
+		<div class="car-avatar">
+		<%= image_tag @car.picture.url(:medium) %>
+		</div>
+	</span>
+	<span id="car-details-main" class="font2">
+		Brand : <%= @car.brand %> <br>
+		Color : <%= @car.color %> <br>
+		Model : <%= @car.model %> <br>
+		Seats : <%= @car.seats %> <br>
+	</span>
 </div>
-
-brand : <%= @car.brand %> <br>
-color : <%= @car.color %> <br>
-model : <%= @car.model %> <br>
-seats : <%= @car.seats %> <br>

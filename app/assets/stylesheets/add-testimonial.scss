@@ -6,9 +6,35 @@
      font-size: 1.5em;
   	}
   	}
-
- .testimonial-add{
-
- @include outer-container;
- }
+$mobile: new-breakpoint(max-width 500px 12);
+.testimonial-add{
+	@include outer-container;
+	#test-add-content{
+		margin-top: 25px;
+		@include span-columns(6);
+		@include shift(3);
+		@include media($mobile) {
+  				@include span-columns(10);
+  				@include shift(1);
+			}
+		
+	}
+	.testimonial-message{
+ 		@include span-columns(10);
+ 		@include shift(1);
+		
+		.message-body{
+			@include span-columns(8);
+			@include media($mobile) {
+  				@include span-columns(6);
+			}
+		}
+		.message-button1{
+			@include span-columns(1);
+			@include media($mobile) {
+  				@include span-columns(2);
+			}
+		}
+	}
+}
 

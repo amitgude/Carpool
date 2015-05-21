@@ -1,75 +1,62 @@
 <div class="my-rides">
-
-
+<p id="heading1">Rides and publish location</p>
+<div class="publish-location-form">
+<%= render('locations/form') %>
+</div>
 
 <ul class="accordion-tabs-minimal">
   <li class="tab-header-and-content">
-    <a href="#" class="tab-link is-active">Created Carpools</a>
+    <a href="#" class="tab-link is-active font3">Created Carpools</a>
     <div class="tab-content">
-      <table class="tables">
-        <thead>
-          <tr>
-            <th>Source</th>
-            <th>Destination</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Created</th>
-            <th>No. of passengers</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-          <% @rides.each do |r| %>
-        <tr>
-        <%= link_to carpool_path(r.id),method: :get do %>
-            <td><%= r.source.first.source %></td>
-            <td><%= r.destination.first.destination %></td>
-            <td><%= r.journey_date.strftime("%d, %B, %Y") %></td>
-            <td><%= r.depature_time.strftime("%I:%M %p") %></td>
-            <td>created <%= time_ago_in_words(r.updated_at)%> ago</td>
+            <% @rides.each do |r| %>
+        <div id="tab-main-content">
+            <%= link_to carpool_path(r.id),method: :get do %>
+            <span class="test font2" id="tab-source"> <span class="font3"> Source:</span><%= r.source.first.source %></span>
+            <span class="test font2" id="tab-destination"><span class="font3">Destination:</span><%= r.destination.first.destination %></span>
+            <span class="test" id="tab-date"><%= r.journey_date.strftime("%d, %B, %Y") %></span>
+            <span class="test" id="tab-time"><%= r.depature_time.strftime("%I:%M %p") %></span>
+            <span class="test" id="tab-created">Created <%= time_ago_in_words(r.updated_at)%> ago</span>
             <% end %>
-            <td><%= r.passengers.size %></td>
-            <td><%= link_to "edit", edit_carpool_path(r.id) ,:class => "btn btn-blue btn-sm"%><%= link_to "view passengers", carpool_mypassengers_path(r.id) ,:class => "btn btn-yellow btn-sm"%>
-                <%= link_to 'Destroy', carpool_path(r.id),
-                data: {confirm: "Are you sure?"}, :method => :delete ,:class => "btn btn-red btn-sm" %>       
-            </td>
-          </tr>
-         <% end %>
-        </tbody>
-      </table>
-        
-      </div>
+            <span class="test" id="tab-passenger"> Passengers<%= r.passengers.size %></span>
+            
+            <span class="table-button"><%= link_to "edit", edit_carpool_path(r.id) ,:class => "btn btn-blue btn-sm"%>
+            </span>
+            <span class="table-button"><%= link_to "view passengers", carpool_mypassengers_path(r.id) ,:class => "btn btn-yellow btn-sm"%>
+            </span>
+            <span class="table-button"><%= link_to 'Delete', carpool_path(r.id),
+                data: {confirm: "Are you sure?"}, :method => :delete ,:class => "btn btn-red btn-sm" %>
+            </span>
+         
+       
+        </div>  
+        <% end %>  
+    </div>
   </li>
   <li class="tab-header-and-content">
-    <a href="#" class="tab-link">booked Carpools</a>
+    <a href="#" class="tab-link font3">Booked Carpools</a>
     <div class="tab-content">
-      <table class="tables">
-        <thead>
-          <tr>
-            <th>Source</th>
-            <th>Destination</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Owner</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        
           <% @passengers.each do |pas| %>
           <% user = User.find(pas.passenger) %>
           <% carpool = Carpool.find(pas.carpool_id) %>
+          <div id="created">
+          <span class="created-tab font2"><span class="font3"> Source : </span><%= carpool.source.first.source%></span>
+          <span class="created-tab font2"><span class="font3">Destination : </span><%= carpool.destination.first.destination%></span>
+          <span class="created-tab"><%= carpool.journey_date.strftime("%d, %B, %Y") %></span>
+          <span class="created-tab"><%= carpool.depature_time.strftime("%I:%M %p") %></span>
+          <span class="font2" id="user-created"><%=link_to  "#{carpool.user.username}", user_path(carpool.user.id),method: :get %></span>
+          <span class="created-button">
+          <%= link_to 'Show', carpool_path(carpool.id), method: :get,:class=>"btn btn-blue btn-sm" %>
+          </span>
+          <span class="created-button">
+          <%= link_to 'Delete', carpool_passenger_path(carpool.id,user.id), method: :delete, data: {confirm: "Are you sure?"},:class=>"btn btn-red btn-sm" %>
+          </span>
+          <span class="created-button">
+          <% if Location.where(:user_id => carpool.user.id).size > 0 %>
+           <%= link_to "see location", Currentlocation_path(carpool.id) ,method: :get,:class => "btn btn-blue btn-sm"%>
+           <% end %>      
+          </span>
+          </div>
 
-        <tr>
-          <td><%= carpool.source.first.source%></td>
-          <td><%= carpool.destination.first.destination%></td>
-          <td><%= carpool.journey_date.strftime("%d, %B, %Y") %></td>
-          <td><%= carpool.depature_time.strftime("%I:%M %p") %></td>
-          <td><%=link_to  "#{user.username}", user_path(pas.passenger) %></td>
-          <td><%= link_to "see location", edit_carpool_path(carpool.id) ,:class => "btn btn-blue btn-sm"%>     
-          </td>
-          </tr>
          <% end %>
         </tbody>
       </table>

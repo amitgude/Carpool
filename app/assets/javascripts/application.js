@@ -84,3 +84,31 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+window.addEventListener("load",function() {
+$nav = $('nav');
+$nav.addClass('scrolled');
+ });
+
+function getLocation(e) {
+    e.preventDefault();
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+
+    
+    
+}
+
+function showPosition(position) {
+    //alert(position.coords.latitude);
+    //alert(position.coords.longitude);
+    
+    document.getElementById('location_latitude').value = position.coords.latitude;
+    document.getElementById('location_longitude').value = position.coords.longitude;
+
+    document.getElementById('new_location').submit();
+    console.log(position.coords.latitude)
+}

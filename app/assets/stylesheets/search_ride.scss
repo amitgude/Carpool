@@ -31,3 +31,69 @@ margin-top: 40px;
   }
 }
 /* / Meadia query*/
+
+.float_label input {
+  outline:none;
+  border:none;
+  border-bottom:4px solid cornflowerblue;
+  color:gray;
+}
+
+
+.float_label label {
+  position:absolute;
+  top: 30%;
+  padding-left: 1%;
+  padding-top: 1.8%;
+  font-size: 1.6em;
+  transform:translateY(-20%);
+  pointer-events:none;
+  font-style:italic;
+  color:#bbb;
+  transition:.2s ease all;
+  position: absolute;
+}
+
+.float_label input:focus {
+  border-color:lightgray;
+}
+
+.float_label input:focus ~ label,
+.float_label input.has-value ~ label {
+  top:0;
+  font-size:14px;
+  color:white;
+}
+
+#find-enter-source{
+    @include media($mobile) {
+    display:none;
+    }
+}
+
+#find-enter-destination{
+  
+    @include media($mobile) {
+
+    display:none;
+    }
+
+
+}
+
+
+
+
+
+.find-rides-main{
+@include span-columns(12);
+background-color: rgba(11, 11, 12, 0.5);
+height: 88px;
+margin-top: -87px;
+position: absolute;
+ @include media($mobile) {
+    height: 172px;
+    margin-top: 0px;
+    position: relative;
+  }
+}

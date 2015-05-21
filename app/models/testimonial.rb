@@ -1,5 +1,6 @@
 class Testimonial < ActiveRecord::Base
 	belongs_to :user
 
-	validates :message, :presence => :true
+	validates :message, :presence => true
+
 end

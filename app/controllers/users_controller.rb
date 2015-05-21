@@ -30,4 +30,6 @@ class UsersController < ApplicationController
 		@recieved = current_user.received_messages.order("created_at DESC")
 		@sent = current_user.sent_messages.order("created_at DESC")
 	end
+
+	
 end

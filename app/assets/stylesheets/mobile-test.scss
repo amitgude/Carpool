@@ -1,7 +1,6 @@
 $mobile: new-breakpoint(max-width 480px 12);
 .mobile-div {
   display:none;
-
     @include media($mobile) {
      @include span-columns(12);
     
@@ -10,18 +9,9 @@ $mobile: new-breakpoint(max-width 480px 12);
   .offer-ride{
    display:none;
     @include media($mobile) {
-     @include span-columns(6);
-     font-size: 1.5em;
-     width: 49.821%;
+     @include span-columns(12);
+  
   }}
-  .find-ride{
-   display:none;
-    @include media($mobile) {
-     @include span-columns(6);
-     font-size: 1.5em;
-      margin-right: 1px;
-      width: 49.821%;
-    }
-  }
+
 }
 

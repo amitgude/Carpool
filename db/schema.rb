@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506090209) do
+ActiveRecord::Schema.define(version: 20150508092120) do
 
   create_table "carpools", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
     t.date     "journey_date"
     t.time     "depature_time"
-    t.integer  "price",         limit: 4
-    t.integer  "luggage_size",  limit: 4
+    t.integer  "price",         limit: 2
+    t.integer  "luggage_size",  limit: 1
     t.text     "other",         limit: 65535
     t.integer  "car_id",        limit: 4
     t.datetime "created_at",                  null: false
@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 20150506090209) do
 
   create_table "cars", force: :cascade do |t|
     t.integer  "user_id",              limit: 4
-    t.string   "brand",                limit: 255
-    t.string   "model",                limit: 255
-    t.string   "color",                limit: 255
-    t.integer  "seats",                limit: 4
+    t.string   "brand",                limit: 20
+    t.string   "model",                limit: 20
+    t.string   "color",                limit: 20
+    t.integer  "seats",                limit: 1
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.string   "picture_file_name",    limit: 255
@@ -41,26 +41,19 @@ ActiveRecord::Schema.define(version: 20150506090209) do
 
   create_table "destinations", force: :cascade do |t|
     t.integer  "carpool_id",  limit: 4
-    t.string   "destination", limit: 255
+    t.string   "destination", limit: 50
     t.float    "latitude",    limit: 24
     t.float    "longitude",   limit: 24
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "fbusers", force: :cascade do |t|
-    t.string   "provider",         limit: 255
-    t.string   "uid",              limit: 255
-    t.string   "name",             limit: 255
-    t.string   "first_name",       limit: 255
-    t.string   "last_name",        limit: 255
-    t.string   "profile_pic",      limit: 255
-    t.string   "email",            limit: 255
-    t.string   "url",              limit: 255
-    t.string   "oauth_token",      limit: 255
-    t.datetime "oauth_expires_at"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+  create_table "locations", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.float    "latitude",   limit: 24
+    t.float    "longitude",  limit: 24
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -92,51 +85,36 @@ ActiveRecord::Schema.define(version: 20150506090209) do
 
   create_table "preferences", force: :cascade do |t|
     t.integer  "carpool_id", limit: 4
-    t.string   "music",      limit: 255
-    t.string   "pets",       limit: 255
-    t.string   "smoking",    limit: 255
+    t.string   "music",      limit: 10
+    t.string   "pets",       limit: 10
+    t.string   "smoking",    limit: 10
     t.boolean  "ladies",     limit: 1
-    t.string   "food",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "food",       limit: 10
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "seats", force: :cascade do |t|
     t.integer  "carpool_id", limit: 4
-    t.integer  "seats",      limit: 4
+    t.integer  "seats",      limit: 1
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
   create_table "sources", force: :cascade do |t|
     t.integer  "carpool_id", limit: 4
-    t.string   "source",     limit: 255
+    t.string   "source",     limit: 50
     t.float    "latitude",   limit: 24
     t.float    "longitude",  limit: 24
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "testimonials", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
-    t.text     "message",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  create_table "user_2s", force: :cascade do |t|
-    t.string   "provider",         limit: 255
-    t.string   "uid",              limit: 255
-    t.string   "name",             limit: 255
-    t.string   "first_name",       limit: 255
-    t.string   "last_name",        limit: 255
-    t.string   "profile_pic",      limit: 255
-    t.string   "email",            limit: 255
-    t.string   "url",              limit: 255
-    t.string   "oauth_token",      limit: 255
-    t.datetime "oauth_expires_at"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.text     "message",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -156,12 +134,12 @@ ActiveRecord::Schema.define(version: 20150506090209) do
     t.string   "picture_content_type",   limit: 255
     t.integer  "picture_file_size",      limit: 4
     t.datetime "picture_updated_at"
-    t.string   "username",               limit: 255
+    t.string   "username",               limit: 50
+    t.integer  "phone_number",           limit: 8
     t.string   "uid",                    limit: 255
     t.string   "provider",               limit: 255
     t.string   "oauth_token",            limit: 255
     t.datetime "oauth_expires_at"
-    t.string   "phone_number",           limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

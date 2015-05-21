@@ -1,30 +1,47 @@
-<%= link_to "Home" , root_path %> <br>
+<div id="find-rides">
+<p id="heading1">Carpool search</p>
+
+
 <% t=0 %>
+<table class="table-minimal">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Journey Date</th>
+            <th>Available Seats</th>
+            <th>Options</th>
+          </tr>
+        </thead>
 <% @carpools.each do |carpool| %>
   <% if carpool.seats.first.seats >  0 %>
     <% carpool.source.first.source %> <!--source -->
     <% carpool.destination.first.destination %> <!--destination -->
     <% distance = ((carpool.source.first.distance_to(carpool.destination.first, :km)).round(2)) %>  <!--distance -->
-    <% sDis = ((distance * 0.90)).round(2) %>  <!--sDis -->
-    <% dDis = ((distance * 0.90)).round(2) %> <!--dDis -->
+    <% sDis = ((distance * 0.50)).round(2) %>  <!--sDis -->
+    <% dDis = ((distance * 0.50)).round(2) %> <!--dDis -->
     <% source= ((carpool.source.first.distance_to(@source, :km) ).round(2)) %> 
     
     <% dest= ((carpool.destination.first.distance_to(@destination, :km) ).round(2)) %> 
    
     <% if source <= sDis %>
       <% if dest <= dDis %>
-        source: <%= carpool.source.first.source %> <br>
-        destination: <%= carpool.destination.first.destination %> <br>
-        journey date: <%= carpool.journey_date %><br> 
-        available seats: <%= carpool.seats.first.seats %> <br>
-        
-        <% if carpool.user.picture.url == "blank.png" && carpool.user.provider=="facebook"%>   
-          <%= image_tag "http://graph.facebook.com/#{carpool.user.uid}/picture?width=50&height=50" %>
-        <% else %>
-          <%= image_tag carpool.user.picture.url(:medium), :style=>"height: 53px;"%>
-        <% end %>
-        <h3> <%= link_to "show", carpool , method: :get %> </h3>
-        <% t=t+1 %>
+
+      
+
+        <tbody>
+          <tr>
+            <td><%= link_to "#{carpool.user.username}", carpool.user %> </td>
+            <td><%= carpool.source.first.source %> <!--source --></td>
+            <td><%= carpool.destination.first.destination %><!--destination --></td>
+            <td><%= carpool.journey_date %></td>
+            <td><%= carpool.seats.first.seats %></td>
+            <td><%= link_to "show", carpool , method: :get ,:class=>" btn btn-blue btn-lg log-btn"%></td>
+          </tr>
+        </tbody>
+     
+      <% t=t+1 %>
         <br>
       <% end %>
     <% end %> 
@@ -34,3 +51,6 @@
 <% if t==0 %>
   <h3> No results </h3>
 <% end %>
+ </table>
+
+</div>

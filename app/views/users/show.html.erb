@@ -1,28 +1,42 @@
-<% if @user.picture.url == "blank.png" && @user.provider=="facebook"%>   
-   <%= image_tag "http://graph.facebook.com/#{@user.uid}/picture?width=50&height=50" %>
-<% else %>
-    <%= image_tag @user.picture.url(:medium), :style=>"height: 53px;"%>
-<% end %>
+<div class="user-profile">
+<p id="heading1">User profile</p>
+<div id="user-profile-main">
+	
+	<span id="profile-pic">
+	<% if @user.picture.url == "blank.png" && @user.provider=="facebook"%>   
+	  <%= image_tag "http://graph.facebook.com/#{@user.uid}/picture?height=145",:style=> "border:5px solid #18BD9D" %>
+	<% else %>
+	  <%= image_tag @user.picture.url, :style=> "height:145px;border:5px solid #18BD9D"%>
+	<% end %>
+		
+	</span>
+	<span id="profile-details" class="font2">
+		username : <%= @user.username %><br>
+		email : <%= @user.email %><br>
+		phone num : <%= @user.phone_number %><br>
+		likes: <%= @user.get_upvotes.size %><br>
+		<% if @user.get_upvotes.size==0 %> 
+		<%= link_to "Like", like_user_path(@user), method: :put ,:class => "btn btn-blue btn-lg fa fa-thumbs-o-up"%> 
+		<%else%>
+		<%= link_to "Dislike", Dislike_user_path(@user), method: :put ,:class => "btn btn-red btn-lg fa fa-thumbs-o-down"%>
+		<%end%>
+	</span>
+	
 
-<br>
-username : <%= @user.username %>
+	
+</div>
 
-email : <%= @user.email %>
-
-phone num : <%= @user.phone_number %>
-
-<%= link_to "Like", like_user_path(@user), method: :put %> 
-<%= link_to "Dislike", Dislike_user_path(@user), method: :put %>
-<br>
-likes: <%= @user.get_upvotes.size %>
-
-<div>
-  <%= form_tag(:action => 'message') do %>
-   <%= label_tag(:title, "Title") %>
-   <%= text_field_tag(:title) %>
-   <%= label_tag(:message, "Message") %>
-   <%= text_field_tag(:message) %>
-   <%= submit_tag("Message") %>
-  <% end %>
+<div id="user-profile-message-1">
+<div id="user-profile-message">
+   <p id="heading1">Send message</p>
+	   <%= form_tag(:action => 'message') do %>
+	   <%= label_tag(:title, "Title") %>
+	   <%= text_field_tag(:title) %>
+	   <%= label_tag(:message, "Message") %>
+	   <%= text_field_tag :message,nil,maxlength: 144 %>
+	   <%= submit_tag("Message",:class => "btn btn-blue btn-lg fa fa-paper-plane ")  %>
+	   <% end %>
+</div>
+</div>
 
 </div>

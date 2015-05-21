@@ -6,7 +6,7 @@
 }
 
 .recent_rides {
-border: 2px solid #00F;
+
 height: 400px;
 width: 48%;
 float: left;
@@ -17,7 +17,7 @@ position: relative;
 width: 85%;
 height: 71%;
 margin: 0px auto;
-border: 1px solid #F00;
+
 margin-top: 39px;
 overflow: hidden;
 }
@@ -84,41 +84,5 @@ width: 42px;
 }
 #next2 {
 width: 42px;
-}
-
-.quote-phrase, .quote-author {
-font-family:sans-serif;
-font-weight:300;
-display: table-cell;
-vertical-align: middle;
-padding: 5px 20px;
-font-family:'Lato', Calibri, Arial, sans-serif;
-}
-
-.quote-phrase {
-height: 200px;
-font-size:24px;
-color:#FFF;
-font-style:italic;
-text-shadow:.5px 0px #b14943;  
-}
-
-.quote-marks {
-font-size:30px;
-padding:0 3px 3px;
-position:inherit;
-}
-
-.quote-author {
-font-style:normal;
-font-size:20px;
-color:#b14943;
-font-weight:400;
-height: 30px;
-}
-
-.quoteContainer, .authorContainer {
-display: table;
-width: 100%;
 }
 

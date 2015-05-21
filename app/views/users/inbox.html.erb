@@ -6,14 +6,14 @@
     <div class="tab-content">
       <% @recieved.each do |r| %>
 	 
-
+   <% r.mark_as_read %>
     <table class="tables">
       <thead>
         <tr>
           <th>User</th>
           <th>Topic</th>
           <th>Body</th>
-          <th>Options</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -21,7 +21,7 @@
           <td><%= link_to "#{User.find(r.sent_messageable_id).username}", User.find(r.sent_messageable_id) %></td>
           <td><%= r.topic %></td>
           <td> <%= r.body %></td>
-          <td><button>Delete</button></td>
+          
            <% end %>
         </tr>
       </tbody>
@@ -38,7 +38,7 @@
           <th>User</th>
           <th>Topic</th>
           <th>Body</th>
-          <th>Options</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -46,7 +46,7 @@
           <td><%= link_to "#{User.find(s.received_messageable_id).username}", User.find(s.received_messageable_id)  %></td>
           <td><%= s.topic %></td>
           <td> <%= s.body %></td>
-          <td><button>Delete</button></td>
+          
            <% end %>
         </tr>
       </tbody>
